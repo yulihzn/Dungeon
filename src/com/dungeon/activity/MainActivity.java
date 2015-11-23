@@ -1,4 +1,6 @@
-package com.banditcat.dungeon;
+package com.dungeon.activity;
+
+import com.banditcat.dungeon.R;
 
 import android.os.Bundle;
 import android.app.Activity;
