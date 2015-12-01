@@ -7,10 +7,14 @@ import com.dungeon.model.GameGridModel;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.drawable.AnimationDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.BaseAdapter;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -56,23 +60,32 @@ public class GameGridViewAdapter extends BaseAdapter {
 					R.layout.item_gamegrid, null);
 			convertView.setTag(holder);
 			holder.tv_msg = (TextView) convertView.findViewById(R.id.textView_msg);
-			holder.ll_gamegrid = (LinearLayout) convertView.findViewById(R.id.layout_gamegrid);
+			holder.iv_content = (ImageView) convertView.findViewById(R.id.imageView_content);
+			holder.fl_gamegrid = (FrameLayout) convertView.findViewById(R.id.layout_gamegrid);
 		} else {
 			holder = (ViewHolder) convertView.getTag();
 		}
-		if(datas.get(position).isActive()){
-			holder.tv_msg.setText(datas.get(position).getMsg());
-			holder.ll_gamegrid.setBackgroundResource(android.R.color.white);
+		holder.tv_msg.setText("");
+		holder.tv_msg.setBackgroundResource(android.R.color.darker_gray);
+		if(datas.get(position).isActive()&&datas.get(position).getType()==0){
+			holder.tv_msg.setVisibility(View.INVISIBLE);
+			holder.iv_content.setVisibility(View.INVISIBLE);  
+		}else if(datas.get(position).isActive()&&datas.get(position).getType()==1){
+			holder.iv_content.setVisibility(View.VISIBLE); 
+			holder.tv_msg.setVisibility(View.INVISIBLE);
+			holder.iv_content.setImageResource(R.anim.ci);  
+			AnimationDrawable animationDrawable = (AnimationDrawable) holder.iv_content.getDrawable();  
+            animationDrawable.start();
 		}else{
-			holder.tv_msg.setText("");
-			holder.ll_gamegrid.setBackgroundResource(android.R.color.darker_gray);
+			holder.tv_msg.setVisibility(View.VISIBLE);
 		}
 		return convertView;
 	}
 
 	public static class ViewHolder {
 		public TextView tv_msg;
-		public LinearLayout ll_gamegrid;
+		public FrameLayout fl_gamegrid;
+		public ImageView iv_content;
 	}
 
 }

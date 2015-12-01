@@ -1,17 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/layout_gamegrid"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:minWidth="150dp"
-    android:minHeight="150dp"
     android:gravity="center"
     android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/textView_msg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="" />
+    <FrameLayout
+        android:id="@+id/layout_gamegrid"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:background="@drawable/ground"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:id="@+id/imageView_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:background="@null" />
+
+        <TextView
+            android:id="@+id/textView_msg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="" />
+    </FrameLayout>
 
 </LinearLayout>
